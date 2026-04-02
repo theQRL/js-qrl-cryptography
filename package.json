@@ -29,9 +29,8 @@
     "lint:fix": "eslint --fix",
     "browser-tests": "npm-run-all browser-tests:build browser-tests:test",
     "browser-tests:build": "bash -x ./scripts/build-browser-tests.sh",
-    "browser-tests:test": "npm-run-all browser-tests:test-parcel browser-tests:test-browserify browser-tests:test-webpack browser-tests:test-rollup",
+    "browser-tests:test": "npm-run-all browser-tests:test-parcel browser-tests:test-webpack browser-tests:test-rollup",
     "browser-tests:test-parcel": "karma start --single-run --browsers ChromeHeadless test/karma.parcel.conf.js",
-    "browser-tests:test-browserify": "karma start --single-run --browsers ChromeHeadless test/karma.browserify.conf.js",
     "browser-tests:test-webpack": "karma start --single-run --browsers ChromeHeadless test/karma.webpack.conf.js",
     "browser-tests:test-rollup": "karma start --single-run --browsers ChromeHeadless test/karma.rollup.conf.js"
   },
@@ -43,8 +42,7 @@
     "@types/node": "18.15.11",
     "@typescript-eslint/eslint-plugin": "5.30.6",
     "@typescript-eslint/parser": "5.30.6",
-    "browserify": "17.0.0",
-    "eslint": "8.38.0",
+    "eslint": "9.26.0",
     "eslint-plugin-prettier": "4.2.1",
     "karma": "6.4.0",
     "karma-chrome-launcher": "3.1.1",
@@ -55,10 +53,10 @@
     "parcel": "2.6.2",
     "prettier": "2.7.1",
     "rimraf": "~3.0.2",
-    "rollup": "2.76.0",
+    "rollup": "4.59.0",
     "ts-node": "10.9.1",
     "typescript": "5.0.2",
-    "webpack": "5.76.0",
+    "webpack": "5.104.1",
     "webpack-cli": "4.10"
   },
   "keywords": [
