@@ -35,8 +35,8 @@
     "browser-tests:test-rollup": "karma start --single-run --browsers ChromeHeadless test/karma.rollup.conf.js"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "22.0.1",
-    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-commonjs": "29.0.2",
+    "@rollup/plugin-node-resolve": "16.0.3",
     "@types/estree": "1.0.0",
     "@types/mocha": "9.1.1",
     "@types/node": "18.15.11",
