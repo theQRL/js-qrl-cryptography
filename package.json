@@ -1,5 +1,5 @@
 {
-  "name": "qrl-cryptography",
+  "name": "@theqrl/qrl-cryptography",
   "version": "0.1.0",
   "description": "All the cryptographic primitives used in QRL",
   "repository": "https://github.com/theQRL/js-qrl-cryptography",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@noble/curves": "1.0.0",
     "@noble/hashes": "1.6.1",
-    "@noble/post-quantum": "0.4.1"
+    "@theqrl/mldsa87": "2.0.1"
   },
   "browser": {
     "crypto": false
