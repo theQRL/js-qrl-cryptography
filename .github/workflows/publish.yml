@@ -24,6 +24,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - name: Create draft GitHub release
-        run: gh release create ${{ github.ref_name }} --draft --notes ""
+        run: gh release create ${{ github.ref_name }} --draft --generate-notes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
