@@ -1,4 +1,4 @@
-# qrl-cryptography
+# @theqrl/qrl-cryptography
 
 All pure-js cryptographic primitives normally used when
 developing Javascript / TypeScript applications and tools for QRL.
@@ -9,6 +9,7 @@ The cryptographic primitives included are:
 * [KDFs: Argon2id](#kdfs-argon2id)
 * [CSPRNG (Cryptographically strong pseudorandom number generator)](#csprng-cryptographically-strong-pseudorandom-number-generator)
 * [AES Encryption](#aes-encryption)
+* [ML-DSA-87](#ml-dsa-87)
 
 ## Usage
 
@@ -16,14 +17,14 @@ Use NPM / Yarn in node.js / browser:
 
 ```bash
 # NPM
-npm install qrl-cryptography
+npm install @theqrl/qrl-cryptography
 
 # Yarn
-yarn add qrl-cryptography
+yarn add @theqrl/qrl-cryptography
 ```
 
 See [browser usage](#browser-usage) for information on using the package with major Javascript bundlers. It is
-tested with **Webpack, Rollup, Parcel and Browserify**.
+tested with **Webpack, Rollup and Parcel**.
 
 This package has no single entry-point, but submodule for each cryptographic
 primitive. Read each primitive's section of this document to learn how to use
@@ -36,19 +37,22 @@ tree-shaking, but the possibility of it not working properly on one of
 
 ```js
 // Hashes
-const { keccak256 } = require("qrl-cryptography/keccak");
+const { keccak256 } = require("@theqrl/qrl-cryptography/keccak");
 
 // KDFs
-const { argon2idSync } = require("qrl-cryptography/argon2id");
+const { argon2idSync } = require("@theqrl/qrl-cryptography/argon2id");
 
 // Random
-const { getRandomBytesSync } = require("qrl-cryptography/random");
+const { getRandomBytesSync } = require("@theqrl/qrl-cryptography/random");
 
 // AES encryption
-const { encrypt } = require("qrl-cryptography/aes");
+const { encrypt } = require("@theqrl/qrl-cryptography/aes");
+
+// ML-DSA-87
+const { ml_dsa87 } = require("@theqrl/qrl-cryptography/ml_dsa87");
 
 // utilities
-const { hexToBytes, toHex, utf8ToBytes } = require("qrl-cryptography/utils");
+const { hexToBytes, toHex, utf8ToBytes } = require("@theqrl/qrl-cryptography/utils");
 ```
 
 ## Hashes: keccak-256
@@ -62,16 +66,16 @@ Exposes following cryptographic hash functions:
 and `keccak512`)
 
 ```js
-const { keccak256, keccak224, keccak384, keccak512 } = require("qrl-cryptography/keccak");
+const { keccak256, keccak224, keccak384, keccak512 } = require("@theqrl/qrl-cryptography/keccak");
 
 keccak256(Uint8Array.from([1, 2, 3]))
 
 // Can be used with strings
-const { utf8ToBytes } = require("qrl-cryptography/utils");
+const { utf8ToBytes } = require("@theqrl/qrl-cryptography/utils");
 keccak256(utf8ToBytes("abc"))
 
 // If you need hex
-const { bytesToHex as toHex } = require("qrl-cryptography/utils");
+const { bytesToHex as toHex } = require("@theqrl/qrl-cryptography/utils");
 toHex(keccak256(utf8ToBytes("abc")))
 ```
 
@@ -79,7 +83,7 @@ toHex(keccak256(utf8ToBytes("abc")))
 
 ```ts
 function argon2id(password: Uint8Array, salt: Uint8Array, t: number, m: number, p: number, dkLen: number, onProgress?: (progress: number) => void): Promise<Uint8Array>;
-function argon2idSync(password: Uint8Array, salt: Uint8Array, t: number, m: number, p: number, dkLen: number, onProgress?: (progress: number) => void)): Uint8Array;
+function argon2idSync(password: Uint8Array, salt: Uint8Array, t: number, m: number, p: number, dkLen: number, onProgress?: (progress: number) => void): Uint8Array;
 ```
 
 The `argon2id` submodule has two functions implementing the Argon2id key
@@ -88,8 +92,8 @@ very slow, and using the synchronous version in the browser is not recommended,
 as it will block its main thread and hang your UI.
 
 ```js
-const { argon2id } = require("qrl-cryptography/argon2id");
-const { utf8ToBytes } = require("qrl-cryptography/utils");
+const { argon2id } = require("@theqrl/qrl-cryptography/argon2id");
+const { utf8ToBytes } = require("@theqrl/qrl-cryptography/utils");
 console.log(await argon2id(utf8ToBytes("password"), utf8ToBytes("salt"), 8, 262144, 1, 32));
 ```
 
@@ -106,7 +110,7 @@ pseudo-random data in synchronous and asynchronous ways.
 Backed by [`crypto.getRandomValues`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues) in browser and by [`crypto.randomBytes`](https://nodejs.org/api/crypto.html#crypto_crypto_randombytes_size_callback) in node.js. If backends are somehow not available, the module would throw an error and won't work, as keeping them working would be insecure.
 
 ```js
-const { getRandomBytesSync } = require("qrl-cryptography/random");
+const { getRandomBytesSync } = require("@theqrl/qrl-cryptography/random");
 console.log(getRandomBytesSync(32));
 ```
 
@@ -129,7 +133,7 @@ compromise your users' security.
 The `key` parameters in this submodule are meant to be strong cryptographic
 keys. If you want to obtain such a key from a password, please use a
 [key derivation function](https://en.wikipedia.org/wiki/Key_derivation_function)
-like [argon2id](#argon2id-submodule).
+like [argon2id](#kdfs-argon2id).
 
 ### Operation modes
 
@@ -185,8 +189,8 @@ exception.
 ### Example usage
 
 ```js
-const { encrypt } = require("qrl-cryptography/aes");
-const { hexToBytes, utf8ToBytes } = require("qrl-cryptography/utils");
+const { encrypt } = require("@theqrl/qrl-cryptography/aes");
+const { hexToBytes, utf8ToBytes } = require("@theqrl/qrl-cryptography/utils");
 
 console.log(
   encrypt(
@@ -195,6 +199,32 @@ console.log(
     hexToBytes("f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff")
   )
 );
+```
+
+## ML-DSA-87
+
+```ts
+function keygen(seed: Uint8Array): { publicKey: Uint8Array; secretKey: Uint8Array };
+function sign(secretKey: Uint8Array, message: Uint8Array, ctx: Uint8Array): Uint8Array;
+function verify(publicKey: Uint8Array, message: Uint8Array, signature: Uint8Array, ctx: Uint8Array): boolean;
+```
+
+The `ml_dsa87` submodule provides the ML-DSA-87 (FIPS 204) post-quantum digital signature scheme, powered by [`@theqrl/mldsa87`](https://www.npmjs.com/package/@theqrl/mldsa87).
+
+```js
+const { ml_dsa87 } = require("@theqrl/qrl-cryptography/ml_dsa87");
+const { utf8ToBytes } = require("@theqrl/qrl-cryptography/utils");
+
+// Generate a key pair
+const { publicKey, secretKey } = ml_dsa87.keygen(seed);
+
+// Sign a message
+const ctx = utf8ToBytes("context");
+const msg = utf8ToBytes("hello");
+const signature = ml_dsa87.sign(secretKey, msg, ctx);
+
+// Verify a signature
+const isValid = ml_dsa87.verify(publicKey, msg, signature, ctx);
 ```
 
 ## Browser usage
@@ -220,8 +250,9 @@ These can be used by setting your `plugins` array like this:
 
 ## License
 
-`ethereum-cryptography` is released under The MIT License (MIT)
+`qrl-cryptography` is released under The MIT License (MIT)
 
 Copyright (c) 2021 Patricio Palladino, Paul Miller, ethereum-cryptography contributors
+Copyright (c) 2024 The QRL Contributors
 
 See [LICENSE](./LICENSE) file.
