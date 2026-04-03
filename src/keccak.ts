@@ -3,7 +3,7 @@ import {
   keccak_224,
   keccak_256,
   keccak_384,
-  keccak_512
+  keccak_512,
 } from "@noble/hashes/sha3";
 import { Hash } from "@noble/hashes/utils";
 import { wrapHash } from "./utils";

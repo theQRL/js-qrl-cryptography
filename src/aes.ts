@@ -10,9 +10,7 @@ function validateOpt(key: Uint8Array, iv: Uint8Array, mode: string) {
   if (iv.length !== 12) {
     throw new Error("AES: wrong IV length");
   }
-  if (
-    (mode.startsWith("aes-256") && key.length !== 32)
-  ) {
+  if (mode.startsWith("aes-256") && key.length !== 32) {
     throw new Error("AES: wrong key length");
   }
 }
@@ -20,7 +18,7 @@ function validateOpt(key: Uint8Array, iv: Uint8Array, mode: string) {
 async function getBrowserKey(
   mode: string,
   key: Uint8Array,
-  iv: Uint8Array
+  iv: Uint8Array,
 ): Promise<[CryptoKey, AesGcmParams]> {
   if (!crypto.web) {
     throw new Error("Browser crypto not available.");
@@ -37,7 +35,7 @@ async function getBrowserKey(
     key,
     { name: `AES-${keyMode.toUpperCase()}`, length: key.length * 8 },
     true,
-    ["encrypt", "decrypt"]
+    ["encrypt", "decrypt"],
   );
   // TODO(rgeraldes24): missing fields
   // node.js uses whole 128 bit as a counter, without nonce, instead of 64 bit
@@ -50,7 +48,7 @@ export async function encrypt(
   key: Uint8Array,
   iv: Uint8Array,
   mode = "aes-256-gcm",
-  pkcs7PaddingEnabled = true
+  pkcs7PaddingEnabled = true,
 ): Promise<Uint8Array> {
   validateOpt(key, iv, mode);
   if (crypto.web) {
@@ -72,7 +70,7 @@ export async function decrypt(
   key: Uint8Array,
   iv: Uint8Array,
   mode = "aes-256-gcm",
-  pkcs7PaddingEnabled = true
+  pkcs7PaddingEnabled = true,
 ): Promise<Uint8Array> {
   validateOpt(key, iv, mode);
   if (crypto.web) {

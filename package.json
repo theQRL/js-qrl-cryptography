@@ -1,5 +1,5 @@
 {
-  "name": "qrl-cryptography",
+  "name": "@theqrl/qrl-cryptography",
   "version": "0.1.0",
   "description": "All the cryptographic primitives used in QRL",
   "repository": "https://github.com/theQRL/js-qrl-cryptography",
@@ -12,7 +12,7 @@
   "dependencies": {
     "@noble/curves": "1.0.0",
     "@noble/hashes": "1.6.1",
-    "@noble/post-quantum": "0.4.1"
+    "@theqrl/mldsa87": "2.0.1"
   },
   "browser": {
     "crypto": false
@@ -29,23 +29,21 @@
     "lint:fix": "eslint --fix",
     "browser-tests": "npm-run-all browser-tests:build browser-tests:test",
     "browser-tests:build": "bash -x ./scripts/build-browser-tests.sh",
-    "browser-tests:test": "npm-run-all browser-tests:test-parcel browser-tests:test-browserify browser-tests:test-webpack browser-tests:test-rollup",
+    "browser-tests:test": "npm-run-all browser-tests:test-parcel browser-tests:test-webpack browser-tests:test-rollup",
     "browser-tests:test-parcel": "karma start --single-run --browsers ChromeHeadless test/karma.parcel.conf.js",
-    "browser-tests:test-browserify": "karma start --single-run --browsers ChromeHeadless test/karma.browserify.conf.js",
     "browser-tests:test-webpack": "karma start --single-run --browsers ChromeHeadless test/karma.webpack.conf.js",
     "browser-tests:test-rollup": "karma start --single-run --browsers ChromeHeadless test/karma.rollup.conf.js"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "22.0.1",
-    "@rollup/plugin-node-resolve": "13.3.0",
-    "@types/estree": "1.0.0",
+    "@rollup/plugin-commonjs": "29.0.2",
+    "@rollup/plugin-node-resolve": "16.0.3",
+    "@types/estree": "1.0.8",
     "@types/mocha": "9.1.1",
     "@types/node": "18.15.11",
-    "@typescript-eslint/eslint-plugin": "5.30.6",
-    "@typescript-eslint/parser": "5.30.6",
-    "browserify": "17.0.0",
-    "eslint": "8.38.0",
-    "eslint-plugin-prettier": "4.2.1",
+    "@typescript-eslint/eslint-plugin": "8.58.0",
+    "@typescript-eslint/parser": "8.58.0",
+    "eslint": "9.26.0",
+    "eslint-plugin-prettier": "5.5.5",
     "karma": "6.4.0",
     "karma-chrome-launcher": "3.1.1",
     "karma-mocha": "2.0.1",
@@ -53,12 +51,12 @@
     "mocha": "10.0.0",
     "npm-run-all": "4.1.5",
     "parcel": "2.6.2",
-    "prettier": "2.7.1",
+    "prettier": "3.8.1",
     "rimraf": "~3.0.2",
-    "rollup": "2.76.0",
+    "rollup": "4.59.0",
     "ts-node": "10.9.1",
     "typescript": "5.0.2",
-    "webpack": "5.76.0",
+    "webpack": "5.104.1",
     "webpack-cli": "4.10"
   },
   "keywords": [
