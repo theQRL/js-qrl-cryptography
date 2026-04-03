@@ -23,7 +23,7 @@ export const ml_dsa87 = {
     publicKey: Uint8Array,
     message: Uint8Array,
     signature: Uint8Array,
-    ctx: Uint8Array
+    ctx: Uint8Array,
   ) {
     return cryptoSignVerify(signature, message, publicKey, ctx);
   },

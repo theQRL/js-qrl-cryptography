@@ -5,7 +5,7 @@ function deepStrictEqual(actual: unknown, expected: unknown, message?: string) {
   const err = new Error(
     `Non-equal values: actual=${actual} (type=${actualType}) expected=${expected} (type=${expectedType})${
       message ? `. Message: ${message}` : ""
-    }`
+    }`,
   );
   if (actualType !== expectedType) {
     throw err;

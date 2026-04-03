@@ -12,7 +12,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "09316115d5cf24ed5a15a31a3ba326e5cf32edc24702987c02b6566f61913cf7"
+      "09316115d5cf24ed5a15a31a3ba326e5cf32edc24702987c02b6566f61913cf7",
   },
   {
     password: "password",
@@ -22,7 +22,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "78fe1ec91fb3aa5657d72e710854e4c3d9b9198c742f9616c2f085bed95b2e8c"
+      "78fe1ec91fb3aa5657d72e710854e4c3d9b9198c742f9616c2f085bed95b2e8c",
   },
   {
     password: "password",
@@ -32,7 +32,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "9dfeb910e80bad0311fee20f9c0e2b12c17987b4cac90c2ef54d5b3021c68bfe"
+      "9dfeb910e80bad0311fee20f9c0e2b12c17987b4cac90c2ef54d5b3021c68bfe",
   },
   {
     password: "password",
@@ -42,7 +42,7 @@ const TEST_VECTORS = [
     p: 2,
     dkLen: 32,
     derivedKey:
-      "6d093c501fd5999645e0ea3bf620d7b8be7fd2db59c20d9fff9539da2bf57037"
+      "6d093c501fd5999645e0ea3bf620d7b8be7fd2db59c20d9fff9539da2bf57037",
   },
   {
     password: "password",
@@ -52,7 +52,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "f6a5adc1ba723dddef9b5ac1d464e180fcd9dffc9d1cbf76cca2fed795d9ca98"
+      "f6a5adc1ba723dddef9b5ac1d464e180fcd9dffc9d1cbf76cca2fed795d9ca98",
   },
   {
     password: "password",
@@ -62,7 +62,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "9025d48e68ef7395cca9079da4c4ec3affb3c8911fe4f86d1a2520856f63172c"
+      "9025d48e68ef7395cca9079da4c4ec3affb3c8911fe4f86d1a2520856f63172c",
   },
   {
     password: "differentpassword",
@@ -72,7 +72,7 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "0b84d652cf6b0c4beaef0dfe278ba6a80df6696281d7e0d2891b817d8c458fde"
+      "0b84d652cf6b0c4beaef0dfe278ba6a80df6696281d7e0d2891b817d8c458fde",
   },
   {
     password: "password",
@@ -82,15 +82,15 @@ const TEST_VECTORS = [
     p: 1,
     dkLen: 32,
     derivedKey:
-      "bdf32b05ccc42eb15d58fd19b1f856b113da1e9a5874fdcc544308565aa8141c"
-  }
+      "bdf32b05ccc42eb15d58fd19b1f856b113da1e9a5874fdcc544308565aa8141c",
+  },
 ];
 
-describe("argon2id", function() {
-  describe("argon2id sync", function() {
+describe("argon2id", function () {
+  describe("argon2id sync", function () {
     for (let i = 0; i < TEST_VECTORS.length; i++) {
-      it(`Should process the test ${i} correctly`, function() {
-        this.timeout(20000)
+      it(`Should process the test ${i} correctly`, function () {
+        this.timeout(20000);
 
         const vector = TEST_VECTORS[i];
 
@@ -100,7 +100,7 @@ describe("argon2id", function() {
           +vector.t,
           +vector.m,
           +vector.p,
-          +vector.dkLen
+          +vector.dkLen,
         );
 
         deepStrictEqual(toHex(derived), vector.derivedKey);
@@ -108,9 +108,9 @@ describe("argon2id", function() {
     }
   });
 
-  describe("argon2id async", function() {
+  describe("argon2id async", function () {
     for (let i = 0; i < TEST_VECTORS.length; i++) {
-      it(`Should process the test ${i} correctly`, async function() {
+      it(`Should process the test ${i} correctly`, async function () {
         this.timeout(20000);
 
         const vector = TEST_VECTORS[i];
@@ -121,7 +121,7 @@ describe("argon2id", function() {
           +vector.t,
           +vector.m,
           +vector.p,
-          +vector.dkLen
+          +vector.dkLen,
         );
 
         deepStrictEqual(toHex(derived), vector.derivedKey);

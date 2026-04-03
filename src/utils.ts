@@ -9,7 +9,7 @@ export {
   bytesToHex as toHex,
   concatBytes,
   createView,
-  utf8ToBytes
+  utf8ToBytes,
 } from "@noble/hashes/utils";
 
 // buf.toString('utf8') -> bytesToUtf8(buf)
@@ -55,6 +55,6 @@ export const crypto: { node?: any; web?: Crypto } = (() => {
     module.require.bind(module);
   return {
     node: nodeRequire && !webCrypto ? nodeRequire("crypto") : undefined,
-    web: webCrypto
+    web: webCrypto,
   };
 })();

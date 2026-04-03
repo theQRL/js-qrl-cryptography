@@ -9,7 +9,7 @@ describe("Random number generation", () => {
       deepStrictEqual(getRandomBytesSync(32).length, 32);
       deepStrictEqual(
         equalsBytes(getRandomBytesSync(32), new Uint8Array(32)),
-        false
+        false,
       );
     });
   });
@@ -21,7 +21,7 @@ describe("Random number generation", () => {
       deepStrictEqual((await getRandomBytes(32)).length, 32);
       deepStrictEqual(
         equalsBytes(await getRandomBytes(32), new Uint8Array(32)),
-        false
+        false,
       );
     });
   });
