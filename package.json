@@ -13,7 +13,7 @@
     "*.d.ts"
   ],
   "dependencies": {
-    "@noble/curves": "1.0.0",
+    "@noble/curves": "2.2.0",
     "@noble/hashes": "~1.8.0",
     "@theqrl/mldsa87": "2.0.1"
   },
