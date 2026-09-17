@@ -1,3 +1,9 @@
+## [0.3.3](https://github.com/theQRL/js-qrl-cryptography/compare/v0.3.2...v0.3.3) (2026-09-17)
+
+### Bug Fixes
+
+* bump @theqrl/mldsa87 to 2.2.0 ([5c08ad9](https://github.com/theQRL/js-qrl-cryptography/commit/5c08ad93f24a70ee6c2dad4e19e6288bfbc7cf9f))
+
 ## [0.3.2](https://github.com/theQRL/js-qrl-cryptography/compare/v0.3.1...v0.3.2) (2026-09-06)
 
 ### Bug Fixes
