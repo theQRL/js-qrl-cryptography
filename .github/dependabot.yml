@@ -15,6 +15,13 @@ updates:
         exclude-patterns:
           - "@noble/*"
           - "@theqrl/*"
+    ignore:
+      # TypeScript 7 (typescript-go) ships no JS compiler API, so typescript-eslint
+      # (peer typescript <6.1.0) cannot load it and `npm ci` fails with ERESOLVE.
+      # Drop this once typescript-eslint supports TS 7:
+      # https://github.com/typescript-eslint/typescript-eslint/issues/10940
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
     commit-message:
       prefix: "deps"
 
